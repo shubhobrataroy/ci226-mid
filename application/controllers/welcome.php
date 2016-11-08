@@ -7,6 +7,7 @@ class Welcome extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->database();
+        $this->load->library('session');
 		$this->load->model('login_model');
 	}
 
@@ -30,8 +31,9 @@ class Welcome extends CI_Controller {
          	{
 
          		if($this->login_model->validate($this->input->post('name'),$this->input->post('password'))) {
-                    $data['username']=$this->input->post('name');
-                    $this->load->view('view_success',$data);
+
+                    $this->session->set_userdata("username",$this->input->post('name'));
+                    $this->load->view('view_success');
                 }
          		else
          		{
@@ -43,4 +45,12 @@ class Welcome extends CI_Controller {
 
 		
 	}
+
+	public function logout()
+    {
+        
+        $this->session->sess_destroy();
+        $this->index();
+    }
+
 }

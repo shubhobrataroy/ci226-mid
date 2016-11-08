@@ -4,12 +4,19 @@ class Login_model extends CI_Model
 {
   public function validate($username, $password)
   {
-  	$sql = "select * from user_list where username='" + $username + "' and password='"+$password+"'";
-  	$this->load->database();
-  	if(sizeof($this->db->query($sql))>=0)
-  		return true;
+  	$sql = "select * from user_list where username='" . $username . "' and password='".$password."'";
 
-  	else
-  	   return false;	
+  	$this->load->database();
+  	$result=$this->db->query($sql);
+    $i=0;
+    foreach ($result->result() as $row )
+      {
+         $i++;
+      }
+
+    if($i>0) return true;
+
+    return false;
+
   }
 }                             

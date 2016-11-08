@@ -21,18 +21,23 @@ class Welcome extends CI_Controller {
 		
 
 
-		if ($this->form_validation->run() == FALSE) { 
-         $this->load->view('view_welcome');
+		if ($this->form_validation->run() == FALSE) {
+            $data['message']="";
+            $this->load->view('view_welcome',$data);
          } 
 
          else 
          	{
-         		if(validate($this->input->post('name'),$this->input->post('password')))
-         		   $this->load->view('view_success');
+
+         		if($this->login_model->validate($this->input->post('name'),$this->input->post('password'))) {
+                    $data['username']=$this->input->post('name');
+                    $this->load->view('view_success',$data);
+                }
          		else
          		{
-         			$data['message']='Message';
+                    $data['message']="Wrong username or password";
          			$this->load->view('view_welcome',$data);
+
          		}
          	}
 

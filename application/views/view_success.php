@@ -9,8 +9,8 @@ if( $this->session->userdata('username')==null) exit('Not allowed');
 <h3>Logged as <?php echo $this->session->userdata('username') ?> </h3>
 
 <ul>
-    <li><a href="">Transaction</a></li>
-    <li><a href="">Product Inventory (search, Delete, Edit, Update)</a></li>
+    <li><a href="http://localhost/ci226/transaction/">Transaction</a></li>
+    <li><a href="http://localhost/ci226/product/">Product Inventory (search, Delete, Edit, Update)</a></li>
     <li><a href="">View Sales Report(Monthly, Yearly, Daily)</a></li>
     <li><a href="">Sales History(To date)</a></li>
     <li><a href="">Manage Users</a></li>
